@@ -1,0 +1,8 @@
+# Set default behavior to automatically normalize line endings
+* text=auto
+
+# Force LF line endings for JavaScript files
+*.js text eol=lf
+
+# Force CRLF line endings for Batch files
+*.bat text eol=crlf
