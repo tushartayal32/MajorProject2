@@ -83,7 +83,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req, res, next) => {
     res.locals.success = req.flash("success"); //flash our message when we add new listing
     res.locals.error = req.flash("error"); 
-    res.locals.currUser = req.user;// it store the current user information
+    res.locals.currUser = req.user || null;// it store the current user information
     next();
 });
 
