@@ -40,7 +40,7 @@
             </div>
 
             <div class="navbar-nav ms-auto">
-                <% if(currUser) { %>
+                <% if(typeof currUser !== "undefined" && currUser) { %>
                     <a class="nav-link" href="/listings/new">Wanderlust your home</a>
                     <a class="nav-link" href="/logout"><b>Log out</b></a>
                 <% } else { %>
