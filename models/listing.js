@@ -15,6 +15,11 @@ const listingSchema = new Schema({
   price: Number,
   location: String,
   country: String,
+  category: {
+    type: String,
+    enum: ["Trending", "Rooms", "Mountains", "Castles", "Camping", "Farms"],
+    default: "Trending"
+  },
   reviews: [
     {
       type: Schema.Types.ObjectId, //store all the reviews id of a particular hotel, in this array

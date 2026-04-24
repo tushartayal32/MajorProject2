@@ -4,22 +4,47 @@ const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken }); 
 
 module.exports.index = async (req, res) => {
-    let { search } = req.query;
+    let { search, min, max, category, page = 1 } = req.query;
+
+    const limit = 6; // per page listings
+    page = parseInt(page);
 
     let query = {};
 
+    // 🔍 SEARCH
     if (search) {
-        query = {
-            $or: [
-                { title: { $regex: search, $options: "i" } },
-                { location: { $regex: search, $options: "i" } }
-            ]
-        };
+        query.$or = [
+            { title: { $regex: search, $options: "i" } },
+            { location: { $regex: search, $options: "i" } },
+            { country: { $regex: search, $options: "i" } }
+        ];
     }
 
-    const listings = await Listing.find(query).populate("owner");
+    // 💰 PRICE
+    if (min || max) {
+        query.price = {};
+        if (min) query.price.$gte = Number(min);
+        if (max) query.price.$lte = Number(max);
+    }
 
-    res.render("listings/index", { listings });
+    // 🎯 CATEGORY
+    if (category) {
+        query.category = category;
+    }
+
+    const totalListings = await Listing.countDocuments(query);
+
+    const listings = await Listing.find(query)
+        .skip((page - 1) * limit)
+        .limit(limit)
+        .populate("owner");
+
+    res.render("listings/index", {
+        listings,
+        currentPage: page,
+        totalPages: Math.ceil(totalListings / limit),
+        query: req.query // important for keeping filters
+    });
 };
 
 module.exports.renderNewForm = (req, res) => {

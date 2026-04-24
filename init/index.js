@@ -23,6 +23,9 @@ const initDB = async () => {
   initData.data = initData.data.map((obj) => ({
     ...obj,
     owner: "66f7f6554a00e701aa41e0c9",
+      category: ["Trending", "Rooms", "Mountains", "Castles", "Camping", "Farms"][
+      Math.floor(Math.random() * 6)
+    ],
     geometry: {
       type: "Point",
       coordinates: [77.209, 28.6139], // dummy (Delhi)
