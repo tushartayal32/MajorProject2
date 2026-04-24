@@ -4,8 +4,19 @@ const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken }); 
 
 module.exports.index = async (req, res) => {
-    const listings = await Listing.find({}).populate("owner");
-    res.render("listings/index", { listings });
+    let search = req.query.search;
+
+    let listings;
+
+    if (search) {
+        listings = await Listing.find({
+            location: { $regex: search, $options: "i" }
+        });
+    } else {
+        listings = await Listing.find({});
+    }
+
+    res.render("listings/index", { listings, search });
 };
 
 module.exports.renderNewForm = (req, res) => {

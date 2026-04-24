@@ -81,21 +81,22 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
+    const publicPaths = ["/login", "/signup"];
+
+    if (!req.isAuthenticated() && !publicPaths.includes(req.path)) {
+        return res.redirect("/login");
+    }
+
+    next();
+});
+
+app.use((req, res, next) => {
     res.locals.success = req.flash("success"); //flash our message when we add new listing
     res.locals.error = req.flash("error"); 
     res.locals.currUser = req.user || null;// it store the current user information
     next();
 });
 
-// app.get("/demouser", async (req, res) => { //Create a fake User
-//     let fakeUser = new User({
-//         email: "stduent@gmail.com",
-//         username: "delta-student",
-//     });
-
-//     let registerUser = await User.register(fakeUser, "helloworld"); //register a fake user
-//     res.send(registerUser);
-// });
 
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
