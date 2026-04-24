@@ -5,8 +5,23 @@
     const listing = <%- JSON.stringify(listing) %>;
 </script>
 
-<!-- ✅ MOBILE FIX CSS -->
+<!-- ✅ FINAL RESPONSIVE CSS -->
 <style>
+
+/* ✅ DESKTOP IMAGE CONTROL */
+.show-img {
+    height: 400px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+/* Card width control (important) */
+.show-card {
+    max-width: 600px;
+    margin: auto;
+}
+
+/* 📱 MOBILE FIX */
 @media (max-width: 576px) {
 
     h3 {
@@ -15,14 +30,13 @@
     }
 
     .show-card {
-        margin: 0;
         width: 100%;
+        margin: 0;
     }
 
     .show-img {
-        height: 400px;
-        object-fit: cover;
-        border-radius: 15px;
+        height: auto;
+        max-height: 250px;
     }
 
     .card-text {
@@ -68,7 +82,7 @@
 
     <!-- CARD -->
     <div class="card col-12 col-md-6 offset-md-3 show-card listing-card">
-        <img src="<%= listing.image.url %>" class="card-img-top show-img img-fluid">
+        <img src="<%= listing.image.url %>" class="card-img-top show-img">
 
         <div class="card-body">
 
