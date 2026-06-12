@@ -47,6 +47,15 @@
     .tax-toggle {
         margin-left: 0;
     }
+
+    .price-filter {
+        flex-wrap: wrap;
+    }
+
+    .price-filter .form-control {
+        flex: 1 1 7rem;
+        min-width: 0;
+    }
 }
 </style>
 
@@ -93,7 +102,7 @@
 
 
 <!-- 🔥 PRICE FILTER -->
-<form action="/listings" method="GET" class="d-flex gap-2 mt-3">
+<form action="/listings" method="GET" class="d-flex gap-2 mt-3 price-filter">
 
     <input type="number" name="min" placeholder="Min Price" class="form-control">
     <input type="number" name="max" placeholder="Max Price" class="form-control">

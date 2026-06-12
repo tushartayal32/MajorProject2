@@ -11,7 +11,7 @@ body {
 
 /* Navbar */
 .navbar{
-    height: 5rem;
+    min-height: 5rem;
     background-color: white;
 }
 
@@ -22,6 +22,109 @@ body {
 
 .nav-link{
     color: #222222 !important;
+}
+
+@media (max-width: 767.98px) {
+    .navbar {
+        height: auto;
+        min-height: 4.25rem;
+        padding: 0.6rem 0;
+    }
+
+    .navbar-collapse {
+        padding-top: 0.75rem;
+    }
+
+    .navbar-nav {
+        width: 100%;
+    }
+
+    .navbar .nav-link {
+        padding: 0.35rem 0;
+    }
+
+    .navbar form {
+        width: 100%;
+        gap: 0.5rem;
+    }
+
+    .search-inp {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+}
+
+/* Auth pages */
+.auth-page {
+    min-height: calc(100vh - 13rem);
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+}
+
+.auth-panel {
+    width: min(100%, 26rem);
+}
+
+.auth-title {
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.auth-form {
+    display: grid;
+    gap: 1.1rem;
+}
+
+.auth-form .form-label {
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+}
+
+.auth-form .form-control {
+    min-height: 2.85rem;
+    border-radius: 0.6rem;
+}
+
+.auth-submit {
+    width: 100%;
+    margin-top: 0.25rem;
+    min-height: 2.85rem;
+    border: none !important;
+    border-radius: 0.6rem !important;
+    background-color: #fe424d !important;
+    color: #fff !important;
+    font-weight: 700 !important;
+}
+
+.auth-switch {
+    margin: 0;
+    text-align: center;
+    color: #555;
+}
+
+.auth-switch a {
+    color: #fe424d;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.auth-switch a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 576px) {
+    .auth-page {
+        min-height: calc(100vh - 12.25rem);
+        align-items: flex-start;
+        padding: 1.5rem 0 2rem;
+    }
+
+    .auth-title {
+        margin-bottom: 1.25rem;
+        font-size: 1.75rem;
+    }
 }
  
 .f-info-links a{

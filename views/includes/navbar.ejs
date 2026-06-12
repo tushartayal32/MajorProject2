@@ -2,6 +2,7 @@
     .btn-search {
         background-color: #fe424d;
         color: #fff;
+        white-space: nowrap;
     }
 
     .btn-search:hover {
@@ -18,12 +19,24 @@
         padding: 0.5rem 2rem 0.5rem 2rem;
         font-size: 1rem;
     }
+
+    @media (max-width: 767.98px) {
+        .search-inp {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.92rem;
+        }
+
+        .navbar-search .btn-search {
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+        }
+    }
 </style>
 
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -32,8 +45,8 @@
             </div>
 
             <div class="navbar-nav ms-auto">
-                <form class="d-flex" role="search" action="/listings" method="GET">
-                    <input name="search" class="form-control me-2 search-inp" type="search" placeholder="Search city, location..." required>
+                <form class="d-flex navbar-search" role="search" action="/listings" method="GET">
+                    <input name="search" class="form-control search-inp" type="search" placeholder="Search city, location..." required>
                     <button class="btn btn-search" type="submit">
                         <i class="fa-solid fa-magnifying-glass"></i>Search
                     </button>
